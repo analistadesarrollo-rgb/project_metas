@@ -52,7 +52,7 @@ function ResumenPage() {
 
         <VentasDiaResumen venta={data.ventaActual} aspiracion={data.aspiracionDia} />
 
-        <GenerateQR codigo={user?.sucursal.CODIGO!} nombres={userName || 'undefined'} username={user?.user.DOCUMENTO! || 'undefined'} />
+        <GenerateQR codigo={user?.sucursal.CODIGO!} nombres={userName || 'undefined'} username={user?.user.DOCUMENTO! || 'undefined'} zona={user?.sucursal.ZONA || 'undefined'} />
       </section>
 
        <section className=' boder rounded-md border'>
