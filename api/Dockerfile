@@ -6,7 +6,7 @@ COPY . /app
 
 # Instalar dependencias necesarias
 #RUN apt-get update && apt-get install -y libaio1
-RUN apt-get update && apt-get install -y libaio1t64
+RUN apt-get update && apt-get install -y libaio1 && rm -rf /var/lib/apt/lists/*
 
 # Configurar Oracle Instant Client
 RUN mkdir -p /opt/oracle && \
