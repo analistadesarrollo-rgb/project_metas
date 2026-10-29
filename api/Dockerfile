@@ -17,9 +17,7 @@ RUN mkdir -p /opt/oracle && \
     ldconfig
 
 # Variables de entorno críticas para Node.js y Oracle
-ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_11_2:$LD_LIBRARY_PATH
-ENV PATH=/opt/oracle/instantclient_11_2:$PATH
-ENV TNS_ADMIN=/opt/oracle/instantclient_11_2
+RUN echo "export LD_LIBRARY_PATH=/opt/oracle/instantclient_11_2:\$LD_LIBRARY_PATH" >> /etc/profile.d/oracle-instantclient.sh
 
 EXPOSE 80
 
