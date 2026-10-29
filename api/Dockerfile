@@ -16,9 +16,10 @@ RUN mkdir -p /opt/oracle && \
     echo "/opt/oracle/instantclient_11_2" > /etc/ld.so.conf.d/oracle-instantclient.conf && \
     ldconfig
 
-# Configurar variables de entorno para que Node encuentre las librerías de Oracle
+# Variables de entorno críticas para Node.js y Oracle
 ENV LD_LIBRARY_PATH=/opt/oracle/instantclient_11_2:$LD_LIBRARY_PATH
 ENV PATH=/opt/oracle/instantclient_11_2:$PATH
+ENV TNS_ADMIN=/opt/oracle/instantclient_11_2
 
 EXPOSE 80
 
