@@ -5,7 +5,8 @@ WORKDIR /app
 COPY . /app
 
 # Instalar dependencias necesarias
-RUN apt-get update && apt-get install -y libaio1
+#RUN apt-get update && apt-get install -y libaio1
+RUN apt-get update && apt-get install -y libaio1t64
 
 # Configurar Oracle Instant Client
 RUN mkdir -p /opt/oracle && \
