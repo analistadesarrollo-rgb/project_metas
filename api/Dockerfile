@@ -1,12 +1,11 @@
-FROM node:lts
+FROM node:22-bookworm
 
 WORKDIR /app
 
 COPY . /app
 
-# Instalar dependencias necesarias
-RUN apt-get update && apt-get install -y libaio1
-
+RUN apt-get update && apt-get install -y --no-install-recommends libaio1 && \
+    rm -rf /var/lib/apt/lists/*
 
 # Configurar Oracle Instant Client
 RUN mkdir -p /opt/oracle && \
@@ -19,8 +18,9 @@ RUN mkdir -p /opt/oracle && \
     echo "/opt/oracle/instantclient_11_2" > /etc/ld.so.conf.d/oracle-instantclient.conf && \
     ldconfig
 
-# Agregar Oracle Instant Client al PATH del sistema
-RUN echo "export LD_LIBRARY_PATH=/opt/oracle/instantclient_11_2:\$LD_LIBRARY_PATH" >> /etc/profile.d/oracle-instantclient.sh
+ENV DB_ORACLE_DIR=/opt/oracle/instantclient_11_2 \
+    DB_ORACLE_DIR_TNS=/opt/oracle/instantclient_11_2/network/admin \
+    LD_LIBRARY_PATH=/opt/oracle/instantclient_11_2
 
 EXPOSE 80
 
